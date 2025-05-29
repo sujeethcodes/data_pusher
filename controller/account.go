@@ -138,12 +138,11 @@ func (a *AccountController) DeleteAccount(c echo.Context) error {
 
 func (a *AccountController) GetAccountDetails(c echo.Context) error {
 	fmt.Println("enter get accoun details function")
-	req := entity.Accounts{}
-	if err := c.Bind(&req); err != nil {
+	AccountID := c.QueryParam("account_id")
+	if AccountID == "" {
 		return c.JSON(400, entity.Response{
 			Status:  constant.BAD_REQUEST,
 			Message: constant.BAD_REQUEST_MESSAGE,
-			Error:   err.Error(),
 		})
 	}
 
@@ -151,7 +150,7 @@ func (a *AccountController) GetAccountDetails(c echo.Context) error {
 		Mysql: a.Mysql,
 	}
 
-	detils, err := accountUsecase.GetAccountDetails(req.AccountID)
+	detils, err := accountUsecase.GetAccountDetails(AccountID)
 	if err != nil {
 		return c.JSON(400, entity.Response{
 			Status:  400,

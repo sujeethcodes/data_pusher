@@ -3,16 +3,16 @@ package controller
 import (
 	"data-pusher/constant"
 	"data-pusher/entity"
+	"data-pusher/repository"
+	"data-pusher/usecase"
 	"io"
 	"net/http"
-
-	"data-pusher/usecase"
 
 	"github.com/labstack/echo"
 )
 
 type DataHandlerController struct {
-	Usecase *usecase.DataUsecase
+	Mysql *repository.MysqlCon
 }
 
 func (h *DataHandlerController) HandleData(c echo.Context) error {
@@ -32,7 +32,10 @@ func (h *DataHandlerController) HandleData(c echo.Context) error {
 		})
 	}
 
-	err = h.Usecase.ProcessData(secret, body)
+	dataHandlerUsecase := usecase.DataUsecase{
+		Mysql: h.Mysql,
+	}
+	err = dataHandlerUsecase.ProcessData(secret, body)
 	if err != nil {
 		if err.Error() == constant.UNAUTHORIZED_MESSAGE {
 			return c.JSON(http.StatusUnauthorized, entity.Response{
