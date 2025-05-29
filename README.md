@@ -15,24 +15,26 @@ A lightweight API service that manages Accounts and Destinations, and forwards i
 ## 📁 Folder Structure
 
 ├── cmd/
-│ └── main.go # Entry point
-├── controller/ # HTTP handlers
-│ ├── account_controller.go
-│ ├── destination_controller.go
-│ └── data_controller.go
-├── usecase/ # Business logic layer
-│ ├── account_usecase.go
-│ ├── destination_usecase.go
-│ └── data_forwarder.go
-├── repository/
-│ └── mysql.go # Singleton DB connection
-├── entity/ # Data models (structs)
-│ ├── account.go
-│ └── destination.go
-├── utils/ # Helper functions
-│ └── parse_headers.go
-├── .env # Environment variables (DB config)
-└── go.mod
+│   └── main.go                      # Entry point of the application
+├── controller/                     # HTTP handlers
+│   ├── account_controller.go
+│   ├── destination_controller.go
+│   └── data_controller.go
+├── usecase/                        # Business logic layer
+│   ├── account_usecase.go
+│   ├── destination_usecase.go
+│   └── data_forwarder.go
+├── repository/                     # Database access layer
+│   └── mysql.go                    # Singleton MySQL DB connection
+├── entity/                         # Data models
+│   ├── account.go
+│   └── destination.go
+├── utils/                          # Utility/helper functions
+│   └── parse_headers.go
+├── connector/                      # External environment connectors
+│   └── loader.go                   # Loads and manages env-based connectors
+├── .env                            # Environment variables (DB config, secrets)
+└── go.mod                          # Go module file
 
 
 
