@@ -37,13 +37,13 @@ func main() {
 	// Accounts Routes
 	e.POST("/account", containerInstance.AccountInstance.CreateAccount)
 	e.PUT("/account", containerInstance.AccountInstance.UpdateAccount)
-	e.GET("/account/:account_id", containerInstance.AccountInstance.GetAccountDetails)
+	e.GET("/account/", containerInstance.AccountInstance.GetAccountDetails)
 	e.DELETE("/account", containerInstance.AccountInstance.DeleteAccount)
 
 	// Destination Routes
 
 	e.POST("/destination", containerInstance.DestinationInstance.CreateDestination)
-	e.GET("/destination", containerInstance.DestinationInstance.GetDestinationDetails)
+	e.GET("/destination/", containerInstance.DestinationInstance.GetDestinationDetails)
 
 	// Data handler
 	e.GET("/incoming_data", containerInstance.DataHandler.HandleData)

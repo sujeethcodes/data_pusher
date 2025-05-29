@@ -73,12 +73,11 @@ func (d *DestinationController) CreateDestination(c echo.Context) error {
 
 func (d *DestinationController) GetDestinationDetails(c echo.Context) error {
 	fmt.Println("enter get accoun details function")
-	req := entity.Accounts{}
-	if err := c.Bind(&req); err != nil {
+	account_id := c.QueryParam("account_id")
+	if account_id == "" {
 		return c.JSON(400, entity.Response{
 			Status:  constant.BAD_REQUEST,
 			Message: constant.BAD_REQUEST_MESSAGE,
-			Error:   err.Error(),
 		})
 	}
 
@@ -86,7 +85,7 @@ func (d *DestinationController) GetDestinationDetails(c echo.Context) error {
 		Mysql: d.Mysql,
 	}
 
-	detils, err := destinationUsecase.GetDestinationDetails(req.AccountID)
+	detils, err := destinationUsecase.GetDestinationDetails(account_id)
 	if err != nil {
 		return c.JSON(400, entity.Response{
 			Status:  400,
