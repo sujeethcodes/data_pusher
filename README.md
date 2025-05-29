@@ -45,21 +45,21 @@ A lightweight API service that manages Accounts and Destinations, and forwards i
 | Method | Endpoint           | Description           |
 |--------|--------------------|-----------------------|
 | POST   | `/accounts`        | Create an account     |
-| GET    | `/accounts/:account_id`    | Get account by ID     |
-| DELETE | `/accounts/`    | Delete account        |
+| GET    | `/accounts/`    | Get account by ID     |
+| DELETE | `/accounts`    | Delete account        |
 
 ### Destination APIs
 
 | Method | Endpoint                          | Description                |
 |--------|-----------------------------------|----------------------------|
 | POST   | `/destinations`                   | Add a new destination      |
-| GET    | `/destinations/:account_id`      | List destinations by account ID |
+| GET    | `/destinations/`      | List destinations by account ID |
 
 ### Data Forwarding API
 
 | Method | Endpoint              | Description                  |
 |--------|-----------------------|------------------------------|
-| POST   | `/server/incoming_data` | Forward data to destinations |
+| POST   | `/incoming_data` | Forward data to destinations |
 
 **Headers:**  
 `CL-X-TOKEN`: Secret token of the account.
